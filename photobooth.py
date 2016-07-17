@@ -32,10 +32,10 @@ prep_delay = 3 # number of seconds at step 1 as users prep to have photo taken
 gif_delay = 100 # How much time between frames in the animated gif
 restart_delay = 5 # how long to display finished message before beginning a new session
 
-monitor_w = 800
-monitor_h = 480
-transform_x = 640 # how wide to scale the jpg when replaying
-transfrom_y = 480 # how high to scale the jpg when replaying
+monitor_w = 320
+monitor_h = 240
+transform_x = 300 # how wide to scale the jpg when replaying
+transfrom_y = 220 # how high to scale the jpg when replaying
 offset_x = 80 # how far off to left corner to display photos
 offset_y = 0 # how far off to left corner to display photos
 replay_delay = 1 # how much to wait in-between showing pics on-screen after taking
@@ -121,15 +121,16 @@ def init_pygame():
     size = (pygame.display.Info().current_w, pygame.display.Info().current_h)
     pygame.display.set_caption('Photo Booth Pics')
     pygame.mouse.set_visible(False) #hide the mouse cursor	
-    return pygame.display.set_mode(size, pygame.FULLSCREEN)
+    #return pygame.display.set_mode(size, pygame.FULLSCREEN)
+    return pygame.display.set_mode(size)
 
 def show_image(image_path):
-#    screen = init_pygame()
-#    img=pygame.image.load(image_path) 
-#    img = pygame.transform.scale(img,(transform_x,transfrom_y))
-#    screen.blit(img,(offset_x,offset_y))
-#    pygame.display.flip()
-     print ("not showingh images")
+    screen = init_pygame()
+    img=pygame.image.load(image_path) 
+    img = pygame.transform.scale(img,(transform_x,transfrom_y))
+    screen.blit(img,(offset_x,offset_y))
+    pygame.display.flip()
+    print ("not showingh images")
 def display_pics(jpg_group):
     # this section is an unbelievable nasty hack - for some reason Pygame
     # needs a keyboardinterrupt to initialise in some limited circs (second time running)
